@@ -30,35 +30,44 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
-iris=load_iris()
-df=pd.DataFrame(data=iris.data, columns=iris.feature_names)
-df['target']=iris.target
+# Load the Iris dataset
+iris = load_iris()
+# Create a Pandas DataFrame
+df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
+df['target'] = iris.target
+# Display the first few rows of the dataset
 print(df.head())
-X = df.drop('target',axis=1)
-y=df['target']
-X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.2, random_state=42)
-1/3
-sgd_clf=SGDClassifier(max_iter=1000, tol=1e-3)
-sgd_clf.fit(X_train,y_train)
-y_pred=sgd_clf.predict(X_test)
-accuracy=accuracy_score(y_test,y_pred)
+# Split the data into features (X) and target (y)
+X = df.drop('target', axis=1)
+y = df['target']
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,
+random_state=42)
+# Create an SGD classifier with default parameters
+sgd_clf = SGDClassifier(max_iter=1000, tol=1e-3)
+# Train the classifier on the training data
+sgd_clf.fit(X_train, y_train)
+# Make predictions on the testing data
+y_pred = sgd_clf.predict(X_test)
+# Evaluate the classifier's accuracy
+accuracy = accuracy_score(y_test, y_pred)
 print(f"Accuracy: {accuracy:.3f}")
-cm=confusion_matrix(y_test,y_pred)
+# Calculate the confusion matrix
+cm = confusion_matrix(y_test, y_pred)
 print("Confusion Matrix:")
 print(cm)
-plt.figure(figsize=(6,4))
-sns.heatmap(cm, annot=True, cmap="Blues", fmt='d', xticklabels=iris.target_names, yticklabels=iris.target_names)
-plt.xlabel("Predicted Label")
-plt.ylabel("True Label")
-plt.title("Confusion Matrix")
-plt.show()
+
 ```
 
 ## Output:
+<img width="753" height="381" alt="image" src="https://github.com/user-attachments/assets/58cc0f03-6149-4234-bb2f-5a6e5d4527dc" />
 
-<img width="963" height="462" alt="image" src="https://github.com/user-attachments/assets/a9360840-deab-4303-9747-4dfe79073ab7" />
+<img width="592" height="185" alt="image" src="https://github.com/user-attachments/assets/c317e0a6-6460-48a1-92dd-d4018544b3e6" />
 
-<img width="858" height="562" alt="image" src="https://github.com/user-attachments/assets/b0288df5-2acf-4c32-b87a-97b225baf76c" />
+<img width="482" height="137" alt="image" src="https://github.com/user-attachments/assets/4c3584e0-28fe-45d2-b217-7281f0b2f5d9" />
+
+<img width="427" height="207" alt="image" src="https://github.com/user-attachments/assets/69f3c64d-2c6d-42eb-be67-b2d0b51dc2d4" />
+
 
 ## Result:
 Thus, the program to implement the prediction of the Iris species using SGD Classifier is written and verified using Python programming.
